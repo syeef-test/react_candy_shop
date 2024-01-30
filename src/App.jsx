@@ -10,8 +10,8 @@ function App() {
       <h2>Candy Shop</h2>
       <CandyContextProvider>
         <AddCandy />
+        <CandyList />
       </CandyContextProvider>
-      <CandyList />
     </>
   );
 }

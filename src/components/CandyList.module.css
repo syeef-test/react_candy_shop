@@ -1,0 +1,35 @@
+
+.formContainer {
+    margin-bottom: 20px;
+}
+
+.formContainer form {
+    display: grid;
+    gap: 10px;
+}
+
+.candyList {
+    list-style: none;
+    padding: 0;
+}
+
+.candyList li {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttonContainer {
+    margin-top: 10px;
+}
+
+
+.disabledButton {
+    background-color: #dddddd;
+    color: #888888;
+    cursor: not-allowed;
+
+}
