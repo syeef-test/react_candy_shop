@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import CandyContext from "../store/candy-context";
 
 function AddCandy() {
+  const candyContext = useContext(CandyContext);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -9,7 +12,9 @@ function AddCandy() {
       candy_name: formData.get("candy_name"),
       desc: formData.get("desc"),
       price: formData.get("price"),
+      quantity: formData.get("quantity"),
     };
+    candyContext.addItem(data);
     console.log(data);
   };
   return (
@@ -28,10 +33,16 @@ function AddCandy() {
           placeholder="Enter candy description"
         />
         <input
-          type="text"
+          type="number"
           name="price"
           id="price"
           placeholder="Enter candy price here"
+        />
+        <input
+          type="number"
+          name="quantity"
+          id="quantity"
+          placeholder="Enter candy quantity here"
         />
         <button type="submit">Add</button>
       </form>
