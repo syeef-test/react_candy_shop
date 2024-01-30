@@ -5,7 +5,6 @@ const CartProvider = (props) => {
   const [items, updateItems] = useState([]);
 
   const addItemByOneHandler = (newItem) => {
-    alert("cartprovider context");
     const existingItemIndex = items.findIndex(
       (item) => item.candy_name === newItem.candy_name
     );
@@ -15,7 +14,7 @@ const CartProvider = (props) => {
       updatedCartItems[existingItemIndex].quantity += 1;
       updateItems(updatedCartItems);
     } else {
-      updateItems((prevItems) => [...prevItems, newItem]);
+      updateItems((prevItems) => [...prevItems, { ...newItem, quantity: 1 }]);
     }
   };
 
