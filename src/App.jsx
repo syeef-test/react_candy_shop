@@ -4,6 +4,7 @@ import AddCandy from "./components/AddCandy";
 import CandyList from "./components/CandyList";
 import CandyContextProvider from "./store/CandyContextProvider";
 import CartModal from "./components/UI/CartModal";
+import CartProvider from "./store/CartProvider";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,12 +20,15 @@ function App() {
   return (
     <>
       <h2>Candy Shop</h2>
-      <button onClick={openModal}>Open Cart</button>
-      <CandyContextProvider>
-        <AddCandy />
-        <CandyList />
-        <CartModal isOpen={isModalOpen} closeModal={closeModal} />
-      </CandyContextProvider>
+
+      <CartProvider>
+        <button onClick={openModal}>Open Cart</button>
+        <CandyContextProvider>
+          <AddCandy />
+          <CandyList />
+          <CartModal isOpen={isModalOpen} closeModal={closeModal} />
+        </CandyContextProvider>
+      </CartProvider>
     </>
   );
 }
