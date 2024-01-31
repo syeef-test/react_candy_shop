@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 
 import Modal from "react-modal";
 import CartContext from "../../store/cart-context";
+import CandyContext from "../../store/candy-context";
 
 const CartModal = ({ isOpen, closeModal }) => {
   const cartContext = useContext(CartContext);
+  const candyContext = useContext(CandyContext);
   const [totalAmount, setTotalAmount] = useState(0);
 
   const totalQuantity = cartContext.items.reduce((curQuantity, item) => {
@@ -24,11 +26,14 @@ const CartModal = ({ isOpen, closeModal }) => {
   }, [cartContext.items]);
 
   const handleIncreaseQuantity = (item) => {
-    cartContext.addItemByOne(item);
+    // cartContext.addItemByOne(item);
+    cartContext.addItemToCartHandler(item);
+    candyContext.removeItem(item, 1);
   };
 
   const handleDecreaseQuantity = (item) => {
     cartContext.removeItem(item);
+    candyContext.addItemByOne(item);
   };
 
   return (

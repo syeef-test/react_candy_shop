@@ -19,6 +19,21 @@ const CandyContextProvider = (props) => {
       setItems((prevItems) => [...prevItems, newItem]);
     }
   };
+
+  const addItemByOneHandler = (newItem) => {
+    const existingItemIndex = items.findIndex(
+      (item) => item.candy_name === newItem.candy_name
+    );
+
+    if (existingItemIndex !== -1) {
+      let updatedCandy = [...items];
+      updatedCandy[existingItemIndex].quantity =
+        Number(updatedCandy[existingItemIndex].quantity) + 1;
+      setItems(updatedCandy);
+    } else {
+      setItems((prevItems) => [...prevItems, newItem]);
+    }
+  };
   const removeItemHandler = (newItem, quantity) => {
     // alert("remove by one");
     const prevCandyList = [...items];
@@ -45,6 +60,7 @@ const CandyContextProvider = (props) => {
     items: items,
     addItem: addItemHandler,
     removeItem: removeItemHandler,
+    addItemByOne: addItemByOneHandler,
   };
 
   useEffect(() => {
