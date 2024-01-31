@@ -6,13 +6,14 @@ import CandyContextProvider from "./store/CandyContextProvider";
 import CartModal from "./components/UI/CartModal";
 import CartProvider from "./store/CartProvider";
 import CartContext from "./store/cart-context";
+import Header from "./components/UI/Header";
 
 function App() {
   const cartContext = useContext(CartContext);
 
-  const totalQuantity = cartContext.items.reduce((curQuantity, item) => {
-    return curQuantity + Number(item.quantity);
-  }, 0);
+  // const totalQuantity = cartContext.items.reduce((curQuantity, item) => {
+  //   return curQuantity + Number(item.quantity);
+  // }, 0);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -29,12 +30,12 @@ function App() {
       <h2>Candy Shop</h2>
 
       <CartProvider>
-        {totalQuantity}
         <CandyContextProvider>
-          <button onClick={openModal}>Open Cart {totalQuantity}</button>
+          <Header />
+          <button onClick={openModal}>Open Cart </button>
           <AddCandy />
           <CandyList />
-          {totalQuantity}
+
           <CartModal isOpen={isModalOpen} closeModal={closeModal} />
         </CandyContextProvider>
       </CartProvider>
