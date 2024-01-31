@@ -34,16 +34,31 @@ function CandyList() {
             {item.quantity === 0 ? "Out of Stock" : item.quantity}
           </div>
           <div className={styles.buttonContainer}>
-            <button onClick={() => candyBuyByOneHandler(item)}>Buy One</button>
+            <button
+              onClick={() => candyBuyByOneHandler(item)}
+              disabled={item.quantity === 0}
+              className={item.quantity === 0 ? styles.disabledButton : ""}
+            >
+              Buy One
+            </button>
           </div>
           <div className={styles.buttonContainer}>
-            <button onClick={() => candyBuyByTwoHandler(item)}>Buy Two</button>
+            <button
+              onClick={() => candyBuyByTwoHandler(item)}
+              disabled={item.quantity < 2}
+              className={item.quantity < 2 ? styles.disabledButton : ""}
+            >
+              Buy Two
+            </button>
           </div>
-          <div
-            onClick={() => candyBuyByThreeHandler(item)}
-            className={styles.buttonContainer}
-          >
-            <button>Buy Three</button>
+          <div className={styles.buttonContainer}>
+            <button
+              onClick={() => candyBuyByThreeHandler(item)}
+              disabled={item.quantity < 3}
+              className={item.quantity < 3 ? styles.disabledButton : ""}
+            >
+              Buy Three
+            </button>
           </div>
         </li>
       ))}
