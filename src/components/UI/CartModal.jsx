@@ -26,8 +26,15 @@ const CartModal = ({ isOpen, closeModal }) => {
   }, [cartContext.items]);
 
   const handleIncreaseQuantity = (item) => {
-    // cartContext.addItemByOne(item);
-    cartContext.addItemToCartHandler(item);
+    //cartContext.addItemByOne(item);
+
+    // const existingItemIndex = candyContext.items.findIndex(
+    //   (item) => item.candy_name === newItem.candy_name
+    // );
+
+    // const candy_quantity = candyContext.items[existingItemIndex].quantity;
+    // alert(candy_quantity);
+    cartContext.addItem(item, 1);
     candyContext.removeItem(item, 1);
   };
 
@@ -57,7 +64,7 @@ const CartModal = ({ isOpen, closeModal }) => {
         ))}
       </ul>
       <div>
-        <span>Total Amount</span>
+        <span>Total Amount:</span>
         <span>{totalAmount}</span>
         <br />
         <span>Total Cart Items:{totalQuantity}</span>

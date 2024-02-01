@@ -34,8 +34,51 @@ const CandyContextProvider = (props) => {
       setItems((prevItems) => [...prevItems, newItem]);
     }
   };
+
+  // const removeItemHandler = (newItem, quantity) => {
+  //   // alert("remove by one");
+  //   const prevCandyList = [...items];
+
+  //   const existingItemIndex = prevCandyList.findIndex(
+  //     (item) => item.candy_name === newItem.candy_name
+  //   );
+
+  //   if (existingItemIndex !== -1) {
+  //     let updateQuantity = Number(prevCandyList[existingItemIndex].quantity);
+  //     if (updateQuantity > 0) {
+  //       updateQuantity = updateQuantity - `${quantity}`;
+  //       const updatedCandy = [...prevCandyList];
+  //       updatedCandy[existingItemIndex] = {
+  //         ...updatedCandy[existingItemIndex],
+  //         quantity: updateQuantity,
+  //       };
+  //       setItems(updatedCandy);
+  //     }
+  //   }
+  // };
+
+  // const removeItemHandler = (newItem, quantity) => {
+  //   const prevCandyList = [...items];
+
+  //   const existingItemIndex = prevCandyList.findIndex(
+  //     (item) => item.candy_name === newItem.candy_name
+  //   );
+
+  //   if (existingItemIndex !== -1) {
+  //     let updateQuantity = Number(prevCandyList[existingItemIndex].quantity);
+  //     if (updateQuantity > 0) {
+  //       updateQuantity -= quantity;
+  //       const updatedCandy = [...prevCandyList];
+  //       updatedCandy[existingItemIndex] = {
+  //         ...updatedCandy[existingItemIndex],
+  //         quantity: updateQuantity,
+  //       };
+  //       setItems(updatedCandy);
+  //     }
+  //   }
+  // };
+
   const removeItemHandler = (newItem, quantity) => {
-    // alert("remove by one");
     const prevCandyList = [...items];
 
     const existingItemIndex = prevCandyList.findIndex(
@@ -45,7 +88,7 @@ const CandyContextProvider = (props) => {
     if (existingItemIndex !== -1) {
       let updateQuantity = Number(prevCandyList[existingItemIndex].quantity);
       if (updateQuantity > 0) {
-        updateQuantity = updateQuantity - `${quantity}`;
+        updateQuantity = updateQuantity - quantity;
         const updatedCandy = [...prevCandyList];
         updatedCandy[existingItemIndex] = {
           ...updatedCandy[existingItemIndex],

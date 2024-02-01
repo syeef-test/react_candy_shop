@@ -31,11 +31,10 @@ function App() {
 
       <CartProvider>
         <CandyContextProvider>
-          <Header />
-          <button onClick={openModal}>Open Cart </button>
+          <Header openModal={openModal} />
+          {/* <button onClick={openModal}>Open Cart </button> */}
           <AddCandy />
           <CandyList />
-
           <CartModal isOpen={isModalOpen} closeModal={closeModal} />
         </CandyContextProvider>
       </CartProvider>

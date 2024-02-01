@@ -8,17 +8,20 @@ function CandyList() {
   const cartContext = useContext(CartContext);
 
   const candyBuyByOneHandler = (newItem) => {
-    cartContext.addItemByOne(newItem);
+    //cartContext.addItemByOne(newItem);
+    cartContext.addItem(newItem, 1);
     candyContext.removeItem(newItem, 1);
   };
 
   const candyBuyByTwoHandler = (newItem) => {
-    cartContext.addItemByTwo(newItem);
+    //cartContext.addItemByTwo(newItem);
+    cartContext.addItem(newItem, 2);
     candyContext.removeItem(newItem, 2);
   };
 
   const candyBuyByThreeHandler = (newItem) => {
-    cartContext.addItemByThree(newItem);
+    //cartContext.addItemByThree(newItem);
+    cartContext.addItem(newItem, 3);
     candyContext.removeItem(newItem, 3);
   };
 
