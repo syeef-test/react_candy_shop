@@ -6,47 +6,28 @@ const CartProvider = (props) => {
   const [items, updateItems] = useState([]);
   const candyContext = useContext(CandyContext);
 
-  // const addItemByOneHandler = (newItem) => {
-  //   const existingItemIndex = items.findIndex(
-  //     (item) => item.candy_name === newItem.candy_name
-  //   );
+  const addItemToCartHandler = (newItem, quantity) => {
+    console.log(newItem, quantity);
+    console.log("addItemToCartHandler", newItem);
 
-  //   if (existingItemIndex !== -1) {
-  //     let updatedCartItems = [...items];
-  //     updatedCartItems[existingItemIndex].quantity += 1;
-  //     updateItems(updatedCartItems);
-  //   } else {
-  //     updateItems((prevItems) => [...prevItems, { ...newItem, quantity: 1 }]);
-  //   }
-  // };
+    const existingItemIndex = items.findIndex(
+      (item) => item.candy_name === newItem.candy_name
+    );
+    //alert(existingItemIndex);
+    // const candyItemIndex = candyContext.items[existingItemIndex];
+    // console.log("existing_item_in_candylist_quantity", candyItemIndex);
 
-  // const addItemByTwoHandler = (newItem) => {
-  //   const existingItemIndex = items.findIndex(
-  //     (item) => item.candy_name === newItem.candy_name
-  //   );
-
-  //   if (existingItemIndex !== -1) {
-  //     let updatedCartItems = [...items];
-  //     updatedCartItems[existingItemIndex].quantity += 2;
-  //     updateItems(updatedCartItems);
-  //   } else {
-  //     updateItems((prevItems) => [...prevItems, { ...newItem, quantity: 2 }]);
-  //   }
-  // };
-
-  // const addItemByThreeHandler = (newItem) => {
-  //   const existingItemIndex = items.findIndex(
-  //     (item) => item.candy_name === newItem.candy_name
-  //   );
-
-  //   if (existingItemIndex !== -1) {
-  //     let updatedCartItems = [...items];
-  //     updatedCartItems[existingItemIndex].quantity += 3;
-  //     updateItems(updatedCartItems);
-  //   } else {
-  //     updateItems((prevItems) => [...prevItems, { ...newItem, quantity: 3 }]);
-  //   }
-  // };
+    if (existingItemIndex !== -1) {
+      let updatedCartItems = [...items];
+      updatedCartItems[existingItemIndex].quantity += quantity;
+      updateItems(updatedCartItems);
+    } else {
+      updateItems((prevItems) => [
+        ...prevItems,
+        { ...newItem, quantity: quantity },
+      ]);
+    }
+  };
 
   const removeItemToCartHandler = (removedItem) => {
     const existingItemIndex = items.findIndex(
@@ -66,32 +47,6 @@ const CartProvider = (props) => {
       }
 
       updateItems(updatedCartItems);
-    }
-  };
-
-  const addItemToCartHandler = (newItem, quantity) => {
-    //only for cart increase button
-    console.log(newItem, quantity);
-    console.log("addItemToCartHandler", newItem);
-
-    const existingItemIndex = items.findIndex(
-      (item) => item.candy_name === newItem.candy_name
-    );
-
-    // console.log(
-    //   "existing_item_in_candylist_quantity",
-    //   candyContext.items[existingItemIndex].quantity
-    // );
-
-    if (existingItemIndex !== -1) {
-      let updatedCartItems = [...items];
-      updatedCartItems[existingItemIndex].quantity += quantity;
-      updateItems(updatedCartItems);
-    } else {
-      updateItems((prevItems) => [
-        ...prevItems,
-        { ...newItem, quantity: quantity },
-      ]);
     }
   };
 

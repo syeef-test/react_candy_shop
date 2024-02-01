@@ -4,7 +4,7 @@ import CandyContext from "./candy-context";
 const CandyContextProvider = (props) => {
   const [items, setItems] = useState([]);
 
-  const addItemHandler = (newItem) => {
+  const addItemHandler = (newItem, quantity) => {
     const existingItemIndex = items.findIndex(
       (item) => item.candy_name === newItem.candy_name
     );
@@ -12,71 +12,15 @@ const CandyContextProvider = (props) => {
     if (existingItemIndex !== -1) {
       let updatedCandy = [...items];
       updatedCandy[existingItemIndex].quantity =
-        Number(updatedCandy[existingItemIndex].quantity) +
-        Number(newItem.quantity);
+        Number(updatedCandy[existingItemIndex].quantity) + Number(quantity);
       setItems(updatedCandy);
     } else {
-      setItems((prevItems) => [...prevItems, newItem]);
+      setItems((prevItems) => [
+        ...prevItems,
+        { ...newItem, quantity: quantity },
+      ]);
     }
   };
-
-  const addItemByOneHandler = (newItem) => {
-    const existingItemIndex = items.findIndex(
-      (item) => item.candy_name === newItem.candy_name
-    );
-
-    if (existingItemIndex !== -1) {
-      let updatedCandy = [...items];
-      updatedCandy[existingItemIndex].quantity =
-        Number(updatedCandy[existingItemIndex].quantity) + 1;
-      setItems(updatedCandy);
-    } else {
-      setItems((prevItems) => [...prevItems, newItem]);
-    }
-  };
-
-  // const removeItemHandler = (newItem, quantity) => {
-  //   // alert("remove by one");
-  //   const prevCandyList = [...items];
-
-  //   const existingItemIndex = prevCandyList.findIndex(
-  //     (item) => item.candy_name === newItem.candy_name
-  //   );
-
-  //   if (existingItemIndex !== -1) {
-  //     let updateQuantity = Number(prevCandyList[existingItemIndex].quantity);
-  //     if (updateQuantity > 0) {
-  //       updateQuantity = updateQuantity - `${quantity}`;
-  //       const updatedCandy = [...prevCandyList];
-  //       updatedCandy[existingItemIndex] = {
-  //         ...updatedCandy[existingItemIndex],
-  //         quantity: updateQuantity,
-  //       };
-  //       setItems(updatedCandy);
-  //     }
-  //   }
-  // };
-
-  // const removeItemHandler = (newItem, quantity) => {
-  //   const prevCandyList = [...items];
-
-  //   const existingItemIndex = prevCandyList.findIndex(
-  //     (item) => item.candy_name === newItem.candy_name
-  //   );
-
-  //   if (existingItemIndex !== -1) {
-  //     let updateQuantity = Number(prevCandyList[existingItemIndex].quantity);
-  //     if (updateQuantity > 0) {
-  //       updateQuantity -= quantity;
-  //       const updatedCandy = [...prevCandyList];
-  //       updatedCandy[existingItemIndex] = {
-  //         ...updatedCandy[existingItemIndex],
-  //         quantity: updateQuantity,
-  //       };
-  //       setItems(updatedCandy);
-  //     }
-  //   }
-  // };
 
   const removeItemHandler = (newItem, quantity) => {
     const prevCandyList = [...items];
@@ -103,7 +47,6 @@ const CandyContextProvider = (props) => {
     items: items,
     addItem: addItemHandler,
     removeItem: removeItemHandler,
-    addItemByOne: addItemByOneHandler,
   };
 
   useEffect(() => {

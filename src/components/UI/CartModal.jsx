@@ -40,7 +40,7 @@ const CartModal = ({ isOpen, closeModal }) => {
 
   const handleDecreaseQuantity = (item) => {
     cartContext.removeItem(item);
-    candyContext.addItemByOne(item);
+    candyContext.addItem(item, 1);
   };
 
   return (

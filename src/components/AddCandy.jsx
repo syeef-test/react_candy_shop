@@ -12,9 +12,9 @@ function AddCandy() {
       candy_name: formData.get("candy_name"),
       desc: formData.get("desc"),
       price: formData.get("price"),
-      quantity: formData.get("quantity"),
     };
-    candyContext.addItem(data);
+    const quantity = formData.get("quantity");
+    candyContext.addItem(data, quantity);
     console.log(data);
   };
   return (

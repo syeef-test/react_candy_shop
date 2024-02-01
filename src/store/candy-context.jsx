@@ -2,9 +2,8 @@ import React from "react";
 
 const CandyContext = React.createContext({
   items: [],
-  addItem: (item) => {},
+  addItem: (item, quantity) => {},
   removeItem: (item, quantity) => {},
-  addItemByOne: (item) => {},
 });
 
 export default CandyContext;
